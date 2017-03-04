@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright © 2016 Firecrest Clinical, Ltd.
+  ~ All rights reserved.
+  -->
+<!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+        "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+<module name="Checker">
+    <!--
+        Checker
+        http://checkstyle.sourceforge.net/config.html#Checker
+    -->
+    <property name="charset" value="UTF-8"/>
+
+<!--    &lt;!&ndash;
+        Headers
+        http://checkstyle.sourceforge.net/config_header.html
+    &ndash;&gt;
+    <module name="RegexpHeader">
+        <property name="headerFile" value="${checkstyle.header.file}"/>
+    </module>-->
+
+    <!--
+        Javadoc Comments
+        http://checkstyle.sourceforge.net/config_javadoc.html
+    -->
+    <!-- do we want to require a package-info.java file for each package?
+    <module name="JavadocPackage"/>
+    -->
+
+    <!--
+        Miscellaneous
+        http://checkstyle.sourceforge.net/config_misc.html
+    -->
+    <module name="NewlineAtEndOfFile"/>
+
+    <!--
+        Regexp
+        http://checkstyle.sourceforge.net/config_regexp.html
+    -->
+    <module name="RegexpSingleline">
+        <property name="format" value="\s+$"/>
+        <property name="message" value="Get rid of trailing whitespace.  It can cause identical lines to be marked different in a diff."/>
+    </module>
+    <!--
+        Whitespace
+        http://checkstyle.sourceforge.net/config_whitespace.html
+    -->
+    <module name="FileTabCharacter"/>
+
+    <module name="TreeWalker">
+        <module name="Regexp">
+            <property name="format" value="System\.(out|err)"/>
+            <property name="illegalPattern" value="true"/>
+            <property name="message" value="System.out and System.err should not be used.  Use a logger instead."/>
+        </module>
+        <!--
+            Annotation Checks
+            http://checkstyle.sourceforge.net/config_annotation.html
+        -->
+        <module name="AnnotationUseStyle">
+            <property name="elementStyle" value="compact_no_array"/>
+            <property name="closingParens" value="never"/>
+            <property name="trailingArrayComma" value="never"/>
+        </module>
+        <module name="MissingDeprecated"/>
+        <module name="MissingOverride"/>
+        <module name="PackageAnnotation"/>
+
+        <!--
+            Block Checks
+            http://checkstyle.sourceforge.net/config_blocks.html
+        -->
+        <module name="EmptyBlock">
+            <property name="option" value="text"/>
+        </module>
+        <module name="LeftCurly">
+            <property name="option" value="eol"/>
+            <property name="maxLineLength" value="120"/>
+        </module>
+        <module name="NeedBraces"/>
+        <module name="RightCurly">
+            <property name="option" value="same"/>
+            <property name="shouldStartLine" value="true"/>
+        </module>
+        <module name="AvoidNestedBlocks">
+            <property name="allowInSwitchCase" value="true"/>
+        </module>
+
+        <!--
+            Class Design
+            http://checkstyle.sourceforge.net/config_design.html
+        -->
+        <module name="VisibilityModifier"/>
+        <module name="FinalClass"/>
+        <module name="InterfaceIsType"/>
+        <module name="HideUtilityClassConstructor"/>
+        <module name="MutableException"/>
+        <module name="InnerTypeLast"/>
+
+        <!--
+            Coding
+            http://checkstyle.sourceforge.net/config_coding.html
+        -->
+        <module name="CovariantEquals"/>
+        <module name="EmptyStatement"/>
+        <module name="EqualsHashCode"/>
+        <!-- I'm in favour of adding FinalLocalVariable.  thoughts?  NTD
+        <module name="FinalLocalVariable">
+            <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
+        </module>
+        -->
+        <module name="HiddenField">
+            <property name="ignoreConstructorParameter" value="true"/>
+            <property name="ignoreSetter" value="true"/>
+        </module>
+        <module name="IllegalInstantiation">
+            <property name="classes" value="java.lang.String,java.lang.Boolean,java.lang.Byte,java.lang.Character,java.lang.Double,java.lang.Float,java.lang.Integer,java.lang.Long,java.lang.Short"/>
+            <message  key="instantiation.avoid"
+                      value="Do not use the constructor for {0}.  Use {0}.valueOf() instead."/>
+        </module>
+        <module name="IllegalInstantiation">
+            <property name="classes" value="java.util.HashMap,java.util.TreeMap,java.util.LinkedHashMap,java.util.EnumMap"/>
+            <message  key="instantiation.avoid"
+                      value="Do not use the constructor for {0}.  Use the new* factory method in Guava's Maps class instead."/>
+        </module>
+        <module name="IllegalInstantiation">
+            <property name="classes" value="java.util.ArrayList,java.util.LinkedList"/>
+            <message  key="instantiation.avoid"
+                      value="Do not use the constructor for {0}.  Use the new* factory method in Guava's Lists class instead."/>
+        </module>
+        <module name="IllegalInstantiation">
+            <property name="classes" value="java.util.HashSet,java.util.LinkedHashSet,java.util.TreeSet,"/>
+            <message  key="instantiation.avoid"
+                      value="Do not use the constructor for {0}.  Use the new* factory method in Guava's Sets class instead."/>
+        </module>
+        <module name="IllegalInstantiation">
+            <property name="classes" value="java.util.Calendar,java.sql.Timestamp,java.sql.Time"/>
+            <message key="instantiation.avoid"
+                     value="Do not use {0}.  Use types from JodaTime library instead."/>
+        </module>
+        <module name="IllegalTokenText">
+            <property name="tokens" value="NUM_INT,NUM_LONG"/>
+            <property name="format" value="^0[^lx]"/>
+            <property name="ignoreCase" value="true"/>
+            <message key="illegal.token.text"
+                     value="It is too easy for the octal literal '{0}' to be misread as a decimal."/>
+        </module>
+        <module name="InnerAssignment"/>
+        <module name="MagicNumber">
+            <property name="ignoreHashCodeMethod" value="true"/>
+            <property name="ignoreAnnotation" value="true"/>
+        </module>
+        <module name="MissingSwitchDefault"/>
+        <module name="ModifiedControlVariable"/>
+        <module name="RedundantThrows">
+            <property name="allowUnchecked" value="true"/>
+        </module>
+        <module name="SimplifyBooleanExpression"/>
+        <module name="SimplifyBooleanReturn"/>
+        <module name="StringLiteralEquality"/>
+        <module name="NestedForDepth">
+            <property name="max" value="2"/>
+        </module>
+        <module name="NestedIfDepth">
+            <property name="max" value="2"/>
+        </module>
+        <module name="NestedTryDepth"/>
+        <module name="NoClone"/>
+        <module name="NoFinalizer"/>
+        <module name="SuperClone"/> <!-- Just in case NoClone is temporarily disabled -->
+        <module name="SuperFinalize"/> <!-- Just in case NoFinalizer is temporarily disabled -->
+        <module name="IllegalCatch"/>
+        <module name="IllegalThrows">
+            <property name="illegalClassNames" value="java.lang.Throwable,java.lang.Error"/>
+        </module>
+        <module name="PackageDeclaration"/>
+        <module name="IllegalType"/>
+        <module name="IllegalType">
+            <property name="illegalClassNames" value="java.util.Calendar,java.sql.Timestamp,java.sql.Time"/>
+            <message key="illegal.type" value="Do not use {0}.  Use types from JodaTime library instead."/>
+        </module>
+        <module name="ParameterAssignment"/>
+        <module name="DefaultComesLast"/>
+        <module name="FallThrough"/>
+        <module name="MultipleStringLiterals">
+		    <property name="ignoreStringsRegexp" value="^.{0,4}$"/>
+	    </module>
+        <module name="MultipleVariableDeclarations"/>
+        <module name="OneStatementPerLine"/>
+
+        <!--
+            Duplicate Code
+            http://checkstyle.sourceforge.net/config_duplicates.html
+        -->
+        <!-- Do we want to use checkstyle for this, or some other tool?  Simian, cpd, ... -->
+
+        <!--
+            Imports
+            http://checkstyle.sourceforge.net/config_imports.html
+        -->
+        <module name="AvoidStarImport">
+            <property name="allowStaticMemberImports" value="true"/>
+        </module>
+        <module name="AvoidStaticImport">
+            <property name="excludes" value="org.hamcrest.Matchers.*"/>
+        </module>
+        <module name="IllegalImport">
+            <property name="illegalPkgs" value="sun"/>
+        </module>
+        <module name="RedundantImport"/>
+        <module name="UnusedImports">
+            <property name="processJavadoc" value="true"/>
+        </module>
+        <module name="ImportOrder">
+            <property name="groups" value="java,javax,/^(?!com\.firecrestclinical\.)/,com.firecrestclinical"/>
+            <property name="option" value="under"/>
+            <property name="separated" value="true"/>
+        </module>
+        <!-- I think we should look at using ImportControl to enforce some kind of structure.
+            e.g. only allow hibernate classes to be imported from domain and dao packages.
+        -->
+
+        <!--
+            Javadoc Comments
+            http://checkstyle.sourceforge.net/config_javadoc.html
+        -->
+        <module name="JavadocType"/>
+        <module name="JavadocVariable">
+            <property name="scope" value="protected"/>
+        </module>
+        <module name="JavadocStyle">
+            <property name="checkEmptyJavadoc" value="true"/>
+        </module>
+
+        <!--
+            Metrics
+            http://checkstyle.sourceforge.net/config_metrics.html
+        -->
+        <!-- Are there any checks under metrics that we would want? -->
+
+        <!--
+            Miscellaneous
+            http://checkstyle.sourceforge.net/config_misc.html
+        -->
+        <module name="UncommentedMain"/>
+        <module name="UpperEll"/>
+        <module name="ArrayTypeStyle">
+            <property name="javaStyle" value="true"/>
+        </module>
+        <!-- I'm in favour of adding FinalLocalParameters.  thoughts?  NTD
+        <module name="FinalParameters"/>
+        -->
+        <!-- I'd like to have some kind of check for Indentation, but in my opinion checkstyle's standard check for
+             this gets things wrong.  NTD -->
+        <module name="TrailingComment"/>
+        <module name="OuterTypeFilename"/>
+
+        <!--
+            Modifiers
+            http://checkstyle.sourceforge.net/config_modifier.html
+        -->
+        <module name="ModifierOrder"/>
+        <module name="RedundantModifier"/>
+
+        <!--
+            Naming Conventions
+            http://checkstyle.sourceforge.net/config_naming.html
+        -->
+        <module name="AbstractClassName">
+            <property name="ignoreName" value="true"/>
+            <property name="format" value="^Abstract.*$"/>
+            <!-- only abstract classes can start Abstract -->
+        </module>
+        <module name="ClassTypeParameterName"/>
+        <module name="ConstantName"/>
+        <module name="LocalFinalVariableName"/>
+        <module name="LocalVariableName"/>
+        <module name="MemberName"/>
+        <module name="MethodName"/>
+        <module name="MethodTypeParameterName"/>
+        <module name="PackageName"/>
+        <module name="ParameterName"/>
+        <module name="StaticVariableName"/>
+        <module name="TypeName"/>
+
+        <!--
+            Size Violations
+            http://checkstyle.sourceforge.net/config_sizes.html
+        -->
+        <module name="ExecutableStatementCount">
+            <property name="max" value="30"/>
+        </module>
+        <module name="LineLength">
+            <property name="max" value="120"/>
+        </module>
+        <module name="MethodLength">
+            <property name="max" value="60"/>
+        </module>
+        <module name="AnonInnerLength">
+            <property name="max" value="60"/>
+        </module>
+        <module name="ParameterNumber">
+            <property name="max" value="7"/>
+        </module>
+        <module name="OuterTypeNumber"/>
+
+        <!--
+            Whitespace
+            http://checkstyle.sourceforge.net/config_whitespace.html
+        -->
+        <module name="GenericWhitespace"/>
+        <module name="EmptyForInitializerPad"/>
+        <module name="EmptyForIteratorPad"/>
+        <module name="MethodParamPad"/>
+        <module name="NoWhitespaceAfter"/>
+        <module name="NoWhitespaceBefore"/>
+        <!-- I'm not sure what the best value is for OperatorWrap (NTD), but we should have it. -->
+        <module name="OperatorWrap"/>
+        <!--I'm in favour of using ParenPad option=space,  any thoughts? NTD
+        <module name="ParenPad">
+            <property name="option" value="space"/>
+        </module>
+        -->
+        <module name="TypecastParenPad"/>
+        <module name="WhitespaceAfter"/>
+        <!-- I'm in favour of using WhitespaceAround, any thoughts? NTD
+        <module name="WhitespaceAround"/>
+        -->
+
+	<!--
+            Filters
+            http://checkstyle.sourceforge.net/config.html#Filters
+	  -->
+	<module name="FileContentsHolder"/>
+    </module>
+
+    <!--
+        Filters
+        http://checkstyle.sourceforge.net/config.html#Filters
+    -->
+    <module name="SuppressionCommentFilter">
+        <property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/>
+        <property name="onCommentFormat" value="CSON\: ([\w\|]+)"/>
+        <property name="checkFormat" value="$1"/>
+    </module>
+
+</module>
