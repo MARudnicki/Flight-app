@@ -3,7 +3,6 @@ package pl.gda.ug.supplier.regularflights;
 import org.joda.time.Duration;
 import org.joda.time.LocalDateTime;
 import pl.gda.ug.domain.Flight;
-import pl.gda.ug.supplier.regularflights.RegularFlightSupplierWS;
 
 import java.math.BigDecimal;
 import java.util.Currency;
@@ -22,7 +21,7 @@ public class SupplierAbstract {
     protected String price;
     protected String currency;
     protected LocalDateTime localDateTime;
-    protected RegularFlightSupplierWS.Money money;
+    protected RegularSupplierWS.Money money;
     protected Duration duration;
 
     protected void dataIsPrepared() {
@@ -35,7 +34,7 @@ public class SupplierAbstract {
         price = "312";
         currency = "EUR";
         localDateTime = LocalDateTime.now();
-        money = new RegularFlightSupplierWS.Money(BigDecimal.valueOf(123.45), Currency.getInstance("EUR"));
+        money = new RegularSupplierWS.Money(BigDecimal.valueOf(123.45), Currency.getInstance("EUR"));
         duration = Duration.millis(3600L);
     }
 

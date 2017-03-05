@@ -11,7 +11,7 @@ import org.joda.time.LocalDateTime;
 /**
  * A fake web service, that represents a flight supplier.
  */
-public class LowcostFlightSupplierWS {
+public class LowcostSupplierWS {
 
     public static final class CheapFlight {
         private final Long id;

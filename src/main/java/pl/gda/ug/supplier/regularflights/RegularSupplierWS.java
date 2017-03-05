@@ -1,5 +1,8 @@
 package pl.gda.ug.supplier.regularflights;
 
+import org.joda.time.Duration;
+import org.joda.time.LocalDateTime;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -9,13 +12,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import org.joda.time.Duration;
-import org.joda.time.LocalDateTime;
-
 /**
  * A fake web service, that represents a flight supplier.
  */
-public class RegularFlightSupplierWS {
+public class RegularSupplierWS {
 
     public static final class Connection {
         private final String id;
@@ -90,7 +90,7 @@ public class RegularFlightSupplierWS {
 
         final Random random = new Random();
         final List<Connection> flights = new ArrayList<Connection>();
-        for (int i=0; i < maxResults; i++) {
+        for (int i = 0; i < maxResults; i++) {
             String id = UUID.randomUUID().toString();
             LocalDateTime dateTime = LocalDateTime.fromDateFields(date).withTime(random.nextInt(23), random.nextInt(60), 0, 0);
             Money price = new Money(new BigDecimal(random.nextInt(1000)), Currency.getInstance("EUR"));
@@ -101,7 +101,8 @@ public class RegularFlightSupplierWS {
         try {
 //            Thread.sleep(random.nextInt(10)*1000);
             Thread.sleep(5000);
-        } catch (InterruptedException e) {}
+        } catch (InterruptedException e) {
+        }
 
         return flights;
     }

@@ -54,7 +54,6 @@ public class FlightControllerIT {
         verify(flightProviderService, times(1)).getFlightList(destinationCode, departureCode, date, maxResults);
         assertThat(responseEntity.getStatusCode(), is(HttpStatus.OK));
     }
-
     private void controllerIsCalled() {
         responseEntity = flightController.getFlights(destinationCode, departureCode, date, maxResults);
     }

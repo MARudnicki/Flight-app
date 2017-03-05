@@ -27,7 +27,7 @@ import static org.mockito.Mockito.when;
 public class LowcostSupplierServiceTest extends SupplierAbstract {
 
     @Mock
-    private LowcostFlightSupplierWS lowcostFlightSupplierWS;
+    private LowcostSupplierWS lowcostSupplierWS;
 
     @InjectMocks
     private LowcostSupplierService lowcostSupplierService;
@@ -40,8 +40,8 @@ public class LowcostSupplierServiceTest extends SupplierAbstract {
     @Test
     public void getFlights() throws Exception {
         Given:
-        when(lowcostFlightSupplierWS.list(anyString(), anyString(), any(Date.class), anyInt())).thenReturn
-                (Collections.singletonList(new LowcostFlightSupplierWS.CheapFlight(id, destinationCode, departureCode,
+        when(lowcostSupplierWS.list(anyString(), anyString(), any(Date.class), anyInt())).thenReturn
+                (Collections.singletonList(new LowcostSupplierWS.CheapFlight(id, destinationCode, departureCode,
                         date, numberOfTransfers, price, currency)));
 
         When:
@@ -61,7 +61,7 @@ public class LowcostSupplierServiceTest extends SupplierAbstract {
     @Test
     public void lowcostWSisOff() throws IOException {
         Given:
-        when(lowcostFlightSupplierWS.list(anyString(), anyString(), any(Date.class), anyInt())).thenThrow(new
+        when(lowcostSupplierWS.list(anyString(), anyString(), any(Date.class), anyInt())).thenThrow(new
                 IOException());
 
         When:

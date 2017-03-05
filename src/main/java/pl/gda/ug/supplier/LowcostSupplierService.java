@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.gda.ug.domain.Flight;
-import pl.gda.ug.supplier.lowcostflights.LowcostFlightSupplierWS;
+import pl.gda.ug.supplier.lowcostflights.LowcostSupplierWS;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Supplier service for calling lowcostFlightSupplierWS
+ * Supplier service for calling lowcostSupplierWS
  */
 @Service
 public class LowcostSupplierService implements FlightSupplier {
@@ -31,11 +31,11 @@ public class LowcostSupplierService implements FlightSupplier {
     /**
      * WS.
      */
-    private LowcostFlightSupplierWS lowcostFlightSupplierWS;
+    private LowcostSupplierWS lowcostSupplierWS;
 
     @Autowired
-    public LowcostSupplierService(LowcostFlightSupplierWS lowcostFlightSupplierWS) {
-        this.lowcostFlightSupplierWS = lowcostFlightSupplierWS;
+    public LowcostSupplierService(LowcostSupplierWS lowcostSupplierWS) {
+        this.lowcostSupplierWS = lowcostSupplierWS;
     }
 
     /**
@@ -50,17 +50,17 @@ public class LowcostSupplierService implements FlightSupplier {
     public List<Flight> getFlights(String destCode, String deptCode, Date date, Integer maxResults) {
 
         try {
-            return lowcostFlightSupplierWS.list(destCode, deptCode, date, maxResults).stream().map(this::mapToFlight)
+            return lowcostSupplierWS.list(destCode, deptCode, date, maxResults).stream().map(this::mapToFlight)
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            LOGGER.warn("LowcostSupplierService is off");
+            LOGGER.warn("Low-costService is off");
 
             return Collections.emptyList();
         }
     }
 
 
-    private Flight mapToFlight(LowcostFlightSupplierWS.CheapFlight cheapFlight) {
+    private Flight mapToFlight(LowcostSupplierWS.CheapFlight cheapFlight) {
         return Flight.newFlight()
                 .id(String.valueOf(cheapFlight.getId()))
                 .destinationCode(cheapFlight.getDestCode())
@@ -69,7 +69,7 @@ public class LowcostSupplierService implements FlightSupplier {
                 .price(BigDecimal.valueOf(Double.valueOf(cheapFlight.getPrice())))
                 .currency(Currency.getInstance(cheapFlight.getCurrency()))
                 .numberOfTransfers(cheapFlight.getNumberOfTransfers())
-                .supplier("LowcostFlightSupplierWS")
+                .supplier("Low-costSupplierWS")
                 .build();
     }
 }

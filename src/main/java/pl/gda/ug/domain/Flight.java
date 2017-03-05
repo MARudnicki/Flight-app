@@ -72,6 +72,10 @@ public class Flight {
         this.supplier = builder.supplier;
     }
 
+    /**
+     * Calling for builder.
+     * @return builder instance.
+     */
     public static Builder newFlight() {
         return new Builder();
     }

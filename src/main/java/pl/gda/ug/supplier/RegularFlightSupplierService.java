@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.gda.ug.domain.Flight;
-import pl.gda.ug.supplier.regularflights.RegularFlightSupplierWS;
+import pl.gda.ug.supplier.regularflights.RegularSupplierWS;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Service for calling regularFlightSupplierWS.
+ * Service for calling regularSupplierWS.
  */
 @Service
 public class RegularFlightSupplierService implements FlightSupplier {
@@ -30,12 +30,12 @@ public class RegularFlightSupplierService implements FlightSupplier {
     /**
      * WS.
      */
-    private RegularFlightSupplierWS regularFlightSupplierWS;
+    private RegularSupplierWS regularSupplierWS;
 
 
     @Autowired
-    public RegularFlightSupplierService(RegularFlightSupplierWS regularFlightSupplierWS) {
-        this.regularFlightSupplierWS = regularFlightSupplierWS;
+    public RegularFlightSupplierService(RegularSupplierWS regularSupplierWS) {
+        this.regularSupplierWS = regularSupplierWS;
     }
 
     /**
@@ -50,16 +50,16 @@ public class RegularFlightSupplierService implements FlightSupplier {
     public List<Flight> getFlights(String destCode, String deptCode, Date date, Integer maxResults) {
 
         try {
-            return regularFlightSupplierWS.getConnections(destCode, deptCode, date, maxResults).stream().map(this::mapToFlight)
+            return regularSupplierWS.getConnections(destCode, deptCode, date, maxResults).stream().map(this::mapToFlight)
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            LOGGER.warn("RegularcostFlightSupplierWS is off", "");
+            LOGGER.warn("RegularSupplierWS is off", "");
 
             return Collections.emptyList();
         }
     }
 
-    private Flight mapToFlight(RegularFlightSupplierWS.Connection connection) {
+    private Flight mapToFlight(RegularSupplierWS.Connection connection) {
         return Flight.newFlight()
                 .id(connection.getId())
                 .destinationCode(connection.getDestinationCode())
@@ -69,7 +69,7 @@ public class RegularFlightSupplierService implements FlightSupplier {
                 .currency(connection.getPrice().getCurrency())
                 .numberOfTransfers(0)
                 .duration(Duration.ofSeconds(connection.getDuration().getStandardSeconds()))
-                .supplier("RegularFlightSupplierWS")
+                .supplier("RegularSupplierWS")
                 .build();
     }
 

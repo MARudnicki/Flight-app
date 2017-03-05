@@ -177,11 +177,11 @@
           <skip>${jacoco.skip}</skip>
           <excludes>
             <exclude>**/*Application.**</exclude>
-            <exclude>**/LowcostFlightSupplierWS.**</exclude>
-            <exclude>**/LowcostFlightSupplierWS$CheapFlight.*</exclude>
-            <exclude>**/RegularFlightSupplierWS.**</exclude>
-            <exclude>**/RegularFlightSupplierWS$Money.*</exclude>
-            <exclude>**/RegularFlightSupplierWS$Connection.*</exclude>
+            <exclude>**/LowcostSupplierWS.**</exclude>
+            <exclude>**/LowcostSupplierWS$CheapFlight.*</exclude>
+            <exclude>**/RegularSupplierWS.**</exclude>
+            <exclude>**/RegularSupplierWS$Money.*</exclude>
+            <exclude>**/RegularSupplierWS$Connection.*</exclude>
           </excludes>
           <propertyName>jacoco-agent</propertyName>
         </configuration>
@@ -237,7 +237,6 @@
         <configuration>
           <skip>${findbugs.skip}</skip>
           <xmlOutput>true</xmlOutput>
-          <onlyAnalyze>com.travactory.jtest.*</onlyAnalyze>
         </configuration>
         <executions>
           <execution>
@@ -256,13 +255,12 @@
     <junit.version>4.12</junit.version>
     <mockito.version>1.9.5</mockito.version>
     <guava.version>19.0</guava.version>
-    <spring.version>4.3.5.RELEASE</spring.version>
 
     <findbugs.version>3.0.4</findbugs.version>
     <checkstyle.version>2.16</checkstyle.version>
     <jacoco.version>0.7.8</jacoco.version>
 
-    <findbugs.skip>false</findbugs.skip>
+    <findbugs.skip>true</findbugs.skip>
     <checkstyle.skip>true</checkstyle.skip>
     <coverage.skip>false</coverage.skip>
 

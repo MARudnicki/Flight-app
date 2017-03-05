@@ -2,8 +2,8 @@ package pl.gda.ug.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.gda.ug.supplier.lowcostflights.LowcostFlightSupplierWS;
-import pl.gda.ug.supplier.regularflights.RegularFlightSupplierWS;
+import pl.gda.ug.supplier.lowcostflights.LowcostSupplierWS;
+import pl.gda.ug.supplier.regularflights.RegularSupplierWS;
 
 /**
  * Bean configuration class.
@@ -12,20 +12,20 @@ import pl.gda.ug.supplier.regularflights.RegularFlightSupplierWS;
 public class BeanConfig {
 
     /**
-     * WS
-     * @return LowcostFlightSupplierWS.
+     * WS.
+     * @return LowcostSupplierWS.
      */
     @Bean
-    public LowcostFlightSupplierWS lowcostFlightSupplierWS() {
-        return new LowcostFlightSupplierWS();
+    public LowcostSupplierWS lowcostFlightSupplierWS() {
+        return new LowcostSupplierWS();
     }
 
     /**
-     * WS
-     * @return RegularFlightSupplierWS.
+     * WS.
+     * @return RegularSupplierWS.
      */
     @Bean
-    public RegularFlightSupplierWS regularFlightSupplierWS() {
-        return new RegularFlightSupplierWS();
+    public RegularSupplierWS regularFlightSupplierWS() {
+        return new RegularSupplierWS();
     }
 }

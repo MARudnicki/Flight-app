@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 public class RegularFlightSupplierServiceTest extends SupplierAbstract {
 
     @Mock
-    private RegularFlightSupplierWS regularFlightSupplierWS;
+    private RegularSupplierWS regularSupplierWS;
 
     @InjectMocks
     private RegularFlightSupplierService regularFlightSupplierService;
@@ -33,8 +33,8 @@ public class RegularFlightSupplierServiceTest extends SupplierAbstract {
     public void getFlights() throws Exception {
         Given:
         dataIsPrepared();
-        when(regularFlightSupplierWS.getConnections(anyString(), anyString(), any(Date.class), anyInt())).thenReturn
-                (Collections.singletonList(new RegularFlightSupplierWS.Connection(String.valueOf(id), destinationCode,
+        when(regularSupplierWS.getConnections(anyString(), anyString(), any(Date.class), anyInt())).thenReturn
+                (Collections.singletonList(new RegularSupplierWS.Connection(String.valueOf(id), destinationCode,
                         departureCode, localDateTime, money, duration)));
 
 
@@ -55,7 +55,7 @@ public class RegularFlightSupplierServiceTest extends SupplierAbstract {
     @Test
     public void regularSupplierIsOff() throws IOException {
         Given:
-        when(regularFlightSupplierWS.getConnections(anyString(), anyString(), any(Date.class), anyInt())).thenThrow(new
+        when(regularSupplierWS.getConnections(anyString(), anyString(), any(Date.class), anyInt())).thenThrow(new
                 IOException());
 
         When:
