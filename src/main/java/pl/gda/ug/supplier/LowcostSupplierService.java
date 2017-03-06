@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Supplier service for calling lowcostSupplierWS
+ * Supplier service for calling lowcostSupplierWS.
  */
 @Service
 public class LowcostSupplierService implements FlightSupplier {

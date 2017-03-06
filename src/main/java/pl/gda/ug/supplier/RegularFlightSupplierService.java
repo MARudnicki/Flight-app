@@ -50,7 +50,8 @@ public class RegularFlightSupplierService implements FlightSupplier {
     public List<Flight> getFlights(String destCode, String deptCode, Date date, Integer maxResults) {
 
         try {
-            return regularSupplierWS.getConnections(destCode, deptCode, date, maxResults).stream().map(this::mapToFlight)
+            return regularSupplierWS.getConnections(destCode, deptCode, date, maxResults).stream()
+                    .map(this::mapToFlight)
                     .collect(Collectors.toList());
         } catch (IOException e) {
             LOGGER.warn("RegularSupplierWS is off", "");

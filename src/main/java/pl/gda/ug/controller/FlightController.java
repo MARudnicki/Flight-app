@@ -44,7 +44,7 @@ public class FlightController {
     public ResponseEntity<List<Flight>> getFlights(@RequestParam String destinationCode, @RequestParam String
             departureCode, @DateTimeFormat(pattern = "ddMMyyyy") Date date, @RequestParam int maxResults) {
 
-        return new ResponseEntity<>(flightProviderService.getFlightList(destinationCode, departureCode, date, maxResults),
-                HttpStatus.OK);
+        return new ResponseEntity<>(flightProviderService.getFlightList(destinationCode, departureCode, date,
+                maxResults), HttpStatus.OK);
     }
 }

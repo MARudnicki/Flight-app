@@ -141,7 +141,7 @@
           <skip>${checkstyle.skip}</skip>
           <failsOnError>true</failsOnError>
           <consoleOutput>true</consoleOutput>
-          <excludes>biz/**</excludes>
+          <excludes>**/RegularSupplierWS**,**/LowcostSupplierWS**,**/Application**</excludes>
         </configuration>
         <executions>
           <execution>
@@ -153,17 +153,6 @@
             <configuration>
               <configLocation>/src/main/resources/checkstyle/checkstyle.xml</configLocation>
               <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
-            </configuration>
-          </execution>
-          <execution>
-            <id>checkstyle-test-source</id>
-            <goals>
-              <goal>check</goal>
-            </goals>
-            <phase>validate</phase>
-            <configuration>
-              <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
-              <configLocation>/src/test/resources/checkstyle/checkstyle-test.xml</configLocation>
             </configuration>
           </execution>
         </executions>
@@ -257,11 +246,11 @@
     <guava.version>19.0</guava.version>
 
     <findbugs.version>3.0.4</findbugs.version>
-    <checkstyle.version>2.16</checkstyle.version>
+    <checkstyle.version>2.15</checkstyle.version>
     <jacoco.version>0.7.8</jacoco.version>
 
-    <findbugs.skip>true</findbugs.skip>
-    <checkstyle.skip>true</checkstyle.skip>
+    <findbugs.skip>false</findbugs.skip>
+    <checkstyle.skip>true</checkstyle.skip><!--//just temporary-->
     <coverage.skip>false</coverage.skip>
 
     <jacoco.skip>${coverage.skip}</jacoco.skip>

@@ -8,7 +8,7 @@ import java.util.Currency;
 /**
  * Domain containing single flight details.
  */
-public class Flight {
+public final class Flight {
 
     /**
      * Flight id.
@@ -56,8 +56,8 @@ public class Flight {
     private String supplier;
 
     /**
-     * Contructor - with builder
-     * @param builder builder.
+     * Constructor - with builder.
+     * @param builder builder
      */
     private Flight(Builder builder) {
         this.id = builder.id;

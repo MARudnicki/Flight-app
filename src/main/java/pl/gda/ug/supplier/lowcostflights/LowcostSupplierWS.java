@@ -49,7 +49,7 @@ public class LowcostSupplierWS {
         }
 
         public Date getTime() {
-            return time;
+            return (Date)time.clone();
         }
 
         public Integer getNumberOfTransfers() {

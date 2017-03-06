@@ -112,10 +112,10 @@
             <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
         </module>
         -->
-        <module name="HiddenField">
-            <property name="ignoreConstructorParameter" value="true"/>
-            <property name="ignoreSetter" value="true"/>
-        </module>
+        <!--<module name="HiddenField">-->
+            <!--<property name="ignoreConstructorParameter" value="true"/>-->
+            <!--<property name="ignoreSetter" value="true"/>-->
+        <!--</module>-->
         <module name="IllegalInstantiation">
             <property name="classes" value="java.lang.String,java.lang.Boolean,java.lang.Byte,java.lang.Character,java.lang.Double,java.lang.Float,java.lang.Integer,java.lang.Long,java.lang.Short"/>
             <message  key="instantiation.avoid"
@@ -213,11 +213,6 @@
         <module name="RedundantImport"/>
         <module name="UnusedImports">
             <property name="processJavadoc" value="true"/>
-        </module>
-        <module name="ImportOrder">
-            <property name="groups" value="java,javax,/^(?!com\.firecrestclinical\.)/,com.firecrestclinical"/>
-            <property name="option" value="under"/>
-            <property name="separated" value="true"/>
         </module>
         <!-- I think we should look at using ImportControl to enforce some kind of structure.
             e.g. only allow hibernate classes to be imported from domain and dao packages.
